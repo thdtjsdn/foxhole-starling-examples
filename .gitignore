@@ -1,0 +1,14 @@
+.DS_Store
+*.swc
+*.stackdump
+._*
+*.local.properties
+output
+third-party
+signing/
+.actionScriptProperties
+.project
+.settings/
+bin-debug/
+bin-release/
+.metadata/
