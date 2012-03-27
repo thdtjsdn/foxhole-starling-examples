@@ -27,6 +27,10 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private var _heightSlider:Slider;
 		private var _isSelectableLabel:Label;
 		private var _isSelectableToggle:ToggleSwitch;
+		private var _clipContentLabel:Label;
+		private var _clipContentToggle:ToggleSwitch;
+		private var _useVirtualLayoutLabel:Label;
+		private var _useVirtualLayoutToggle:ToggleSwitch;
 		
 		private var _minX:Number;
 		
@@ -96,6 +100,22 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._isSelectableToggle.onChange.add(isSelectableToggle_onChange);
 			this.addChild(this._isSelectableToggle);
 			
+			this._clipContentLabel = new Label();
+			this._clipContentLabel.text = "clipContent";
+			this.addChild(this._clipContentLabel);
+			this._clipContentToggle = new ToggleSwitch();
+			this._clipContentToggle.isSelected = this._list.clipContent;
+			this._clipContentToggle.onChange.add(clipContentToggle_onChange);
+			this.addChild(this._clipContentToggle);
+			
+			this._useVirtualLayoutLabel = new Label();
+			this._useVirtualLayoutLabel.text = "useVirtualLayout";
+			this.addChild(this._useVirtualLayoutLabel);
+			this._useVirtualLayoutToggle = new ToggleSwitch();
+			this._useVirtualLayoutToggle.isSelected = this._list.useVirtualLayout;
+			this._useVirtualLayoutToggle.onChange.add(useVirtualLayoutToggle_onChange);
+			this.addChild(this._useVirtualLayoutToggle);
+			
 			// handles the back hardware key on android
 			this.backButtonHandler = this.onBackButton;
 		}
@@ -134,7 +154,22 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this._isSelectableLabel.x = this._isSelectableToggle.x - this._isSelectableLabel.width - spacingX;
 			this._isSelectableLabel.y = this._isSelectableToggle.y + (this._isSelectableToggle.height - this._isSelectableLabel.height) / 2;
 			
-			this._minX = Math.min(this._widthLabel.x, this._heightLabel.x, this._isSelectableLabel.x) - spacingX;
+			this._clipContentToggle.validate();
+			this._clipContentToggle.x = this.stage.stageWidth - this._clipContentToggle.width - margin;
+			this._clipContentToggle.y = this._isSelectableToggle.y + this._isSelectableToggle.height + spacing;
+			this._clipContentLabel.validate();
+			this._clipContentLabel.x = this._clipContentToggle.x - this._clipContentLabel.width - spacingX;
+			this._clipContentLabel.y = this._clipContentToggle.y + (this._clipContentToggle.height - this._clipContentLabel.height) / 2;
+			
+			this._useVirtualLayoutToggle.validate();
+			this._useVirtualLayoutToggle.x = this.stage.stageWidth - this._useVirtualLayoutToggle.width - margin;
+			this._useVirtualLayoutToggle.y = this._clipContentToggle.y + this._clipContentToggle.height + spacing;
+			this._useVirtualLayoutLabel.validate();
+			this._useVirtualLayoutLabel.x = this._useVirtualLayoutToggle.x - this._useVirtualLayoutLabel.width - spacingX;
+			this._useVirtualLayoutLabel.y = this._useVirtualLayoutToggle.y + (this._useVirtualLayoutToggle.height - this._useVirtualLayoutLabel.height) / 2;
+			
+			this._minX = Math.min(this._widthLabel.x, this._heightLabel.x, this._isSelectableLabel.x,
+				this._clipContentLabel.x, this._useVirtualLayoutLabel.x) - spacingX;
 			this._widthSlider.maximum = this._minX;
 			this._list.validate();
 			this._list.x = (this._minX - this._list.width) / 2;
@@ -166,6 +201,16 @@ package org.josht.starling.foxhole.kitchenSink.screens
 		private function isSelectableToggle_onChange(toggle:ToggleSwitch):void
 		{
 			this._list.isSelectable = this._isSelectableToggle.isSelected;
+		}
+		
+		private function clipContentToggle_onChange(toggle:ToggleSwitch):void
+		{
+			this._list.clipContent = this._clipContentToggle.isSelected;
+		}
+		
+		private function useVirtualLayoutToggle_onChange(toggle:ToggleSwitch):void
+		{
+			this._list.useVirtualLayout = this._useVirtualLayoutToggle.isSelected;
 		}
 	}
 }
