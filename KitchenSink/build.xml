@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="foxhole-starling" default="build" basedir=".">
+	
+	<!-- build.local.properties and sdk.local.proprties are optional files that
+		can be used to override the default properties. -->
+	<property file="./sdk.local.properties"/>
+	<property file="./sdk.properties"/>
+	<property file="./build.local.properties"/>
+	<property file="./build.properties"/>
+	
+	<fail unless="certificate.path"/>
+	<fail unless="certificate.password"/>
+
+	<target name="build">
+		<delete dir="${output.path}"/>
+		<echo message="Building KitchenSink.swf"/>
+		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
+			<arg line="+flexlib='${flexframework.root}'"/>
+			<arg line="+configname=air"/>
+			<arg line="--swf-version=15"/>
+			<arg line="--source-path+='source'"/>
+			<arg line="--source-path+='${signals.root}'"/>
+			<arg line="--source-path+='${gtween.root}'"/>
+			<arg line="--source-path+='${starling.root}'"/>
+			<arg line="--source-path+='${stats.root}'"/>
+			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="source/KitchenSink.as"/>
+			<arg line="--output ${output.path}/KitchenSink.swf"/>
+		</java>
+		<java jar="${adt}" dir="${basedir}" fork="true" 
+			failonerror="true" maxmemory="512m">
+			<arg line="-package"/>
+			<arg line="-target apk-captive-runtime"/>
+			<arg line="-storetype pkcs12"/>
+			<arg line="-keystore ${certificate.path}"/>
+			<arg line="-storepass ${certificate.password}"/>
+			<arg line="${output.path}/KitchenSink.apk"/>
+			<arg line="KitchenSink-app.xml"/>
+			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
+			<arg line="-C ${output.path}"/>
+			<arg line="KitchenSink.swf"/>
+		</java>
+	</target>
+</project>

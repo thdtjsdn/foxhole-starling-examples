@@ -48,7 +48,7 @@ package org.josht.starling.foxhole.themes
 			
 			//since it's a pixel font, we want a multiple of the original size,
 			//which, in this case, is 8.
-			const fontSize:int = Math.max(8, roundToNearest(16 * scale, 8));
+			const fontSize:int = Math.max(8, roundToNearest(24 * scale, 8));
 			
 			this.setInitializerForClass(Label, function(label:Label):void
 			{
@@ -84,7 +84,7 @@ package org.josht.starling.foxhole.themes
 				button.defaultTextFormat = new BitmapFontTextFormat(font, fontSize, 0x666666);
 				button.defaultSelectedTextFormat = new BitmapFontTextFormat(font, fontSize, 0x333333);
 				
-				button.contentPadding = fontSize;
+				button.contentPadding = 16 * scale;
 				button.gap = 12 * scale;
 			});
 			
@@ -189,7 +189,7 @@ package org.josht.starling.foxhole.themes
 			{
 				list.listProperties =
 				{
-					//verticalAlign: "bottom"
+					clipContent: true
 				}
 				
 				const defaultIcon:Image = new Image(ATLAS.getTexture("drop-down-arrow"));
