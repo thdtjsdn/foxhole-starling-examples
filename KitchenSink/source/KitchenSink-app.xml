@@ -17,7 +17,7 @@
 		<content>KitchenSink.swf</content>
 		<aspectRatio>landscape</aspectRatio>
 		<autoOrients>false</autoOrients>
-		<fullScreen>false</fullScreen>
+		<fullScreen>true</fullScreen>
 		<visible>true</visible>
 		<renderMode>direct</renderMode>
 	</initialWindow>
@@ -38,4 +38,18 @@
 			</manifest>
 		]]></manifestAdditions>
 	</android>
+	<iPhone>
+		<InfoAdditions>
+		<![CDATA[
+			<key>UIDeviceFamily</key> 
+			<array> 
+				<string>1</string>
+				<string>2</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<true/>
+		]]> 
+		</InfoAdditions>
+		<requestedDisplayResolution>high</requestedDisplayResolution>
+	</iPhone>
 </application>
