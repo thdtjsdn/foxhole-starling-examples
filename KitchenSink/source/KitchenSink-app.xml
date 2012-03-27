@@ -16,7 +16,7 @@
 	<initialWindow>
 		<content>KitchenSink.swf</content>
 		<aspectRatio>landscape</aspectRatio>
-		<autoOrients>true</autoOrients>
+		<autoOrients>false</autoOrients>
 		<fullScreen>false</fullScreen>
 		<visible>true</visible>
 		<renderMode>direct</renderMode>
@@ -34,6 +34,7 @@
 		<colorDepth>16bit</colorDepth>
 		<manifestAdditions><![CDATA[
 			<manifest android:installLocation="auto">
+				<uses-sdk android:targetSdkVersion="11"/>
 			</manifest>
 		]]></manifestAdditions>
 	</android>

@@ -24,6 +24,7 @@
 			<arg line="--source-path+='${starling.root}'"/>
 			<arg line="--source-path+='${stats.root}'"/>
 			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="--source-path+='${theme.root}'"/>
 			<arg line="source/KitchenSink.as"/>
 			<arg line="--output ${output.path}/KitchenSink.swf"/>
 		</java>
@@ -35,7 +36,7 @@
 			<arg line="-keystore ${certificate.path}"/>
 			<arg line="-storepass ${certificate.password}"/>
 			<arg line="${output.path}/KitchenSink.apk"/>
-			<arg line="KitchenSink-app.xml"/>
+			<arg line="source/KitchenSink-app.xml"/>
 			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
 			<arg line="-C ${output.path}"/>
 			<arg line="KitchenSink.swf"/>
