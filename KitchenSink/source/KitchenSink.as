@@ -3,9 +3,12 @@ package
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
+	import flash.display.StageDisplayState;
+	import flash.display.StageOrientation;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import flash.system.Capabilities;
 	
 	import org.josht.starling.foxhole.kitchenSink.KitchenSinkRoot;
 	
@@ -28,6 +31,14 @@ package
 		
 		private function loaderInfo_completeHandler(event:Event):void
 		{
+			//workaround for testing on desktop until ADL stops offsetting the
+			//starling stage in fullScreen mode.
+			if(Capabilities.os.indexOf("Windows") >= 0 || Capabilities.os.indexOf("Mac OS") >= 0)
+			{
+				this.stage.displayState = StageDisplayState.NORMAL;
+				this.stage.setOrientation(StageOrientation.ROTATED_LEFT);
+			}
+			
 			Starling.handleLostContext = true;
 			Starling.multitouchEnabled = true;
 			this._starling = new Starling(KitchenSinkRoot, this.stage);
