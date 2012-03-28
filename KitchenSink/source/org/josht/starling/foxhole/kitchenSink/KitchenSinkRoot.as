@@ -2,7 +2,8 @@ package org.josht.starling.foxhole.kitchenSink
 {
 	import com.gskinner.motion.easing.Cubic;
 	
-	import fr.kouma.starling.utils.Stats;
+	import flash.system.Capabilities;
+	import flash.ui.Mouse;
 	
 	import org.josht.starling.display.ScreenNavigator;
 	import org.josht.starling.display.ScreenNavigatorItem;
@@ -28,7 +29,7 @@ package org.josht.starling.foxhole.kitchenSink
 		private static const LIST:String = "list";
 		private static const PICKER_LIST:String = "pickerList";
 		
-		private static const ORIGINAL_DPI:int = 326;
+		private static const ORIGINAL_DPI:int = Mouse.supportsCursor ? 72 : 326;
 		
 		public function KitchenSinkRoot()
 		{
@@ -39,11 +40,11 @@ package org.josht.starling.foxhole.kitchenSink
 		private var _addedWatcher:AddedWatcher;
 		private var _navigator:ScreenNavigator;
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
-		private var _stats:Stats;
 		
 		private function addedToStageHandler(event:Event):void
 		{
-			this._addedWatcher = new MinimalTheme(this.stage);
+			const isDesktop:Boolean = Mouse.supportsCursor;
+			this._addedWatcher = new MinimalTheme(this.stage, !isDesktop);
 			
 			this._navigator = new ScreenNavigator();
 			this.addChild(this._navigator);
@@ -106,8 +107,10 @@ package org.josht.starling.foxhole.kitchenSink
 			this._transitionManager.duration = 0.4;
 			this._transitionManager.ease = Cubic.easeOut;
 			
-			//this._stats = new Stats();
-			//this.stage.addChild(this._stats);
+			/*import fr.kouma.starling.utils.Stats;
+			var stats:Stats = new Stats();//null, false);
+			this.stage.addChild(stats);
+			stats.y = this.stage.stageHeight - stats.height;*/
 		}
 	}
 }
