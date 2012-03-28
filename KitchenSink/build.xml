@@ -8,11 +8,38 @@
 	<property file="./build.local.properties"/>
 	<property file="./build.properties"/>
 	
-	<fail unless="certificate.path"/>
-	<fail unless="certificate.password"/>
+	<fail unless="ios.provision.path"/>
+	<fail unless="ios.certificate.path"/>
+	<fail unless="ios.certificate.password"/>
+	
+	<fail unless="android.certificate.path"/>
+	<fail unless="android.certificate.password"/>
 
-	<target name="build">
+	<target name="build" depends="build-web,build-android,build-ios"/>
+
+	<target name="prepare">
 		<delete dir="${output.path}"/>
+	</target>
+
+	<target name="build-web" depends="prepare">
+		<echo message="Building KitchenSinkWeb.swf"/>
+		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
+			<arg line="+flexlib='${flexframework.root}'"/>
+			<arg line="--swf-version=15"/>
+			<arg line="--static-link-runtime-shared-libraries=true"/>
+			<arg line="--frame two org.josht.starling.foxhole.kitchenSink.KitchenSinkRoot"/>
+			<arg line="--source-path+='source'"/>
+			<arg line="--source-path+='${signals.root}'"/>
+			<arg line="--source-path+='${gtween.root}'"/>
+			<arg line="--source-path+='${starling.root}'"/>
+			<arg line="--source-path+='${stats.root}'"/>
+			<arg line="--source-path+='${foxhole.root}'"/>
+			<arg line="--source-path+='${theme.root}'"/>
+			<arg line="source/KitchenSinkWeb.as"/>
+			<arg line="--output ${output.path}/KitchenSinkWeb.swf"/>
+		</java>
+	</target>
+	<target name="build-air-swf" depends="prepare">
 		<echo message="Building KitchenSink.swf"/>
 		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
 			<arg line="+flexlib='${flexframework.root}'"/>
@@ -28,13 +55,31 @@
 			<arg line="source/KitchenSink.as"/>
 			<arg line="--output ${output.path}/KitchenSink.swf"/>
 		</java>
+	</target>
+	<target name="build-ios" depends="build-air-swf">
+		<java jar="${adt}" dir="${basedir}" fork="true" 
+			failonerror="true" maxmemory="512m">
+			<arg line="-package"/>
+			<arg line="-target ipa-app-store"/>
+			<arg line="-provisioning-profile ${ios.provision.path}"/>
+			<arg line="-keystore ${ios.certificate.path}"/>
+			<arg line="-storetype pkcs12"/>
+			<arg line="-storepass ${ios.certificate.password}"/>
+			<arg line="${output.path}/KitchenSink.ipa"/>
+			<arg line="source/KitchenSink-app.xml"/>
+			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
+			<arg line="-C ${output.path}"/>
+			<arg line="KitchenSink.swf"/>
+		</java>
+	</target>
+	<target name="build-android" depends="build-air-swf">
 		<java jar="${adt}" dir="${basedir}" fork="true" 
 			failonerror="true" maxmemory="512m">
 			<arg line="-package"/>
 			<arg line="-target apk-captive-runtime"/>
 			<arg line="-storetype pkcs12"/>
-			<arg line="-keystore ${certificate.path}"/>
-			<arg line="-storepass ${certificate.password}"/>
+			<arg line="-keystore ${android.certificate.path}"/>
+			<arg line="-storepass ${android.certificate.password}"/>
 			<arg line="${output.path}/KitchenSink.apk"/>
 			<arg line="source/KitchenSink-app.xml"/>
 			<!--<arg line="icon48.png icon72.png icon128.png icon512.png"/>-->
