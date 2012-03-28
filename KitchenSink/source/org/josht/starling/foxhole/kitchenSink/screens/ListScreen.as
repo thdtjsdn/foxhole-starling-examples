@@ -53,7 +53,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			this.addChild(this._backButton);
 			
 			var items:Vector.<String> = new <String>[];
-			for(var i:int = 0; i < 50; i++)
+			for(var i:int = 0; i < 150; i++)
 			{
 				var label:String = "Item " + (i + 1).toString();
 				items.push(label);
@@ -62,7 +62,7 @@ package org.josht.starling.foxhole.kitchenSink.screens
 			
 			this._list = new List();
 			this._list.dataProvider = new ListCollection(items);
-			this._list.typicalItem = "Item 00";
+			this._list.typicalItem = "Item 000";
 			this._list.height = 250 * this.dpiScale;
 			this._list.clipContent = true;
 			this.addChildAt(this._list, 0);
