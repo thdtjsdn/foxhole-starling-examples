@@ -4,16 +4,13 @@ package org.josht.starling.foxhole.kitchenSink.screens
 	import org.josht.starling.display.Screen;
 	import org.josht.starling.foxhole.controls.Button;
 	import org.josht.starling.foxhole.controls.Label;
-	import org.josht.starling.foxhole.controls.List;
 	import org.josht.starling.foxhole.controls.PickerList;
 	import org.josht.starling.foxhole.controls.ToggleSwitch;
 	import org.josht.starling.foxhole.data.ListCollection;
-	import org.josht.starling.foxhole.kitchenSink.assets.EmbeddedAssets;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
 	
 	import starling.textures.Texture;
-	import starling.textures.TextureSmoothing;
 	
 	public class ButtonScreen extends Screen
 	{
