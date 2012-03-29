@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:671797c39a9027e25aca7de9a5b2429b$ -->
+<!-- $TexturePacker:SmartUpdate:b2b360a496495b1bb005d7ee6578a12b$ -->
 <TextureAtlas imagePath="minimal.png">
-    <SubTexture name="button-down-skin" x="332" y="2" width="16" height="16"/>
-    <SubTexture name="button-selected-skin" x="314" y="2" width="16" height="16"/>
-    <SubTexture name="button-up-skin" x="296" y="2" width="16" height="16"/>
-    <SubTexture name="drop-down-arrow" x="2" y="22" width="12" height="7"/>
-    <SubTexture name="inset-background-simple-skin" x="278" y="2" width="16" height="16"/>
-    <SubTexture name="inset-background-skin" x="260" y="2" width="16" height="16"/>
-    <SubTexture name="list-item-down" x="28" y="22" width="4" height="4"/>
-    <SubTexture name="list-item-selected" x="22" y="22" width="4" height="4"/>
-    <SubTexture name="list-item-up" x="16" y="22" width="4" height="4"/>
-    <SubTexture name="pf_ronda_seven_0" x="2" y="2" width="256" height="18" frameX="0" frameY="0" frameWidth="256" frameHeight="32"/>
-    <SubTexture name="thumb-skin" x="350" y="2" width="12" height="12" frameX="-4" frameY="-4" frameWidth="16" frameHeight="16"/>
+    <SubTexture name="button-down-skin" x="343" y="3" width="16" height="16"/>
+    <SubTexture name="button-selected-skin" x="323" y="3" width="16" height="16"/>
+    <SubTexture name="button-up-skin" x="303" y="3" width="16" height="16"/>
+    <SubTexture name="drop-down-arrow" x="363" y="19" width="14" height="9"/>
+    <SubTexture name="inset-background-simple-skin" x="283" y="3" width="16" height="16"/>
+    <SubTexture name="inset-background-skin" x="263" y="3" width="16" height="16"/>
+    <SubTexture name="list-item-down" x="19" y="25" width="4" height="4"/>
+    <SubTexture name="list-item-selected" x="11" y="25" width="4" height="4"/>
+    <SubTexture name="list-item-up" x="3" y="25" width="4" height="4"/>
+    <SubTexture name="pf_ronda_seven_0" x="3" y="3" width="258" height="20" frameX="0" frameY="0" frameWidth="256" frameHeight="32"/>
+    <SubTexture name="thumb-skin" x="363" y="3" width="12" height="12" frameX="-4" frameY="-4" frameWidth="16" frameHeight="16"/>
 </TextureAtlas>
